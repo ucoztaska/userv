@@ -1,0 +1,61 @@
+{
+  "name": "userv",
+  "description": "uCoz server status checker.",
+  "version": "1.0.0",
+  "author": "József Sallai @jozsefsallai",
+  "bin": {
+    "userv": "./bin/run"
+  },
+  "bugs": "https://github.com/ucoztaska/userv/issues",
+  "dependencies": {
+    "@oclif/command": "^1",
+    "@oclif/config": "^1",
+    "@oclif/plugin-help": "^2",
+    "axios": "^0.19.0",
+    "chalk": "^2.4.2",
+    "cheerio": "^1.0.0-rc.3",
+    "tslib": "^1"
+  },
+  "devDependencies": {
+    "@oclif/dev-cli": "^1",
+    "@types/cheerio": "^0.22.12",
+    "@types/node": "^10",
+    "globby": "^10",
+    "rimraf": "^2.6.3",
+    "ts-node": "^8",
+    "tslint": "^5",
+    "typescript": "^3.3"
+  },
+  "engines": {
+    "node": ">=8.0.0"
+  },
+  "files": [
+    "/bin",
+    "/lib",
+    "/npm-shrinkwrap.json",
+    "/oclif.manifest.json"
+  ],
+  "homepage": "https://github.com/ucoztaska/userv",
+  "keywords": [
+    "oclif",
+    "ucoz",
+    "website builder",
+    "server status"
+  ],
+  "license": "MIT",
+  "main": "lib/index.js",
+  "oclif": {
+    "commands": "./lib/commands",
+    "bin": "userv",
+    "plugins": [
+      "@oclif/plugin-help"
+    ]
+  },
+  "repository": "ucoztaska/userv",
+  "scripts": {
+    "lint": "tslint --project .",
+    "postpack": "rimraf oclif.manifest.json",
+    "prepack": "rimraf lib && tsc -b && oclif-dev manifest && oclif-dev readme"
+  },
+  "types": "lib/index.d.ts"
+}
