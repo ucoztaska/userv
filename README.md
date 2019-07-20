@@ -11,7 +11,7 @@ To run this application, you must have Node.js and npm installed.
 Use npm to install the program:
 
 ```sh
-npm i -g userv
+npm i -g @jozsefsallai/userv
 ```
 
 ## Usage
