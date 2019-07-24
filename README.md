@@ -34,6 +34,16 @@ To get the server status of all servers:
 userv all
 ```
 
+**Utility:** to figure out what server a uCoz website is hosted on, use the following command:
+```
+userv site forum.ucoz.com
+```
+and replace "forum.ucoz.com" with the URL of your website.
+
+## Note
+
+The tool only works with uCoz websites. White label and VIP will very likely not work.
+
 ## Development
 
 The program was written in Typescript and uses [oclif](https://oclif.io/).
