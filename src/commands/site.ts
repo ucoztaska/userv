@@ -38,7 +38,7 @@ export default class Site extends Command {
 
   getServerNumber(serverString: string) {
     const matches = serverString.match(/\(s([0-9]+)\)/g);
-    return matches.pop().slice(1, -1);
+    return matches && matches[0] && matches[0].slice(1, -1);
   }
 
   async run() {
