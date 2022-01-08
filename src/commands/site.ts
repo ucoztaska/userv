@@ -1,5 +1,5 @@
 import { Command } from '@oclif/command';
-import chalk from 'chalk';
+import iro, { green, red } from 'node-iro';
 
 import axios, { AxiosResponse } from 'axios';
 
@@ -15,12 +15,10 @@ export default class Site extends Command {
   static description = 'Check what server your website is hosted on.';
 
   static examples = [
-    '$ userv site forum.ucoz.com\n✔️ The site forum.ucoz.com is hosted on s101.'
+    '$ userv site forum.ucoz.com\n✔️ The site forum.ucoz.com is hosted on s101.',
   ];
 
-  static args = [
-    { name: 'url', required: true }
-  ];
+  static args = [{ name: 'url', required: true }];
 
   validateUrl(url: string) {
     url = url.toLowerCase();
@@ -29,7 +27,14 @@ export default class Site extends Command {
       url = `http://${url}`;
     }
 
-    if (url.split('://')[1].split('.').filter((component: string) => component.length && !component.includes('/')).length < 2) {
+    if (
+      url
+        .split('://')[1]
+        .split('.')
+        .filter(
+          (component: string) => component.length && !component.includes('/'),
+        ).length < 2
+    ) {
       return false;
     }
 
@@ -51,10 +56,8 @@ export default class Site extends Command {
     }
 
     try {
-      const html = await axios
-        .get(url)
-        .then((res: AxiosResponse) => res.data);
-      
+      const html = await axios.get(url).then((res: AxiosResponse) => res.data);
+
       const matches = html.match(/<!-- [0-9].([0-9]+) \(s([0-9]+)\) -->/g);
       if (!matches) {
         throw new ValidationError('That is not a uCoz website.');
@@ -62,13 +65,15 @@ export default class Site extends Command {
 
       const server = this.getServerNumber(matches[0]);
 
-      return this.log(chalk.greenBright(`✔️ The site ${args.url} is hosted on ${server}.`));
+      return this.log(
+        iro(`✔️ The site ${args.url} is hosted on ${server}.`, green),
+      );
     } catch (err) {
-      if (err.name === 'ValidationError') {
-        return this.error(chalk.redBright(`❌ ${err.message}`));
+      if ((err as any).name === 'ValidationError') {
+        return this.error(iro(`❌ ${err}`, red));
       }
 
-      return this.error(chalk.redBright('❌ The provided website is not available.'));
+      return this.error(iro('❌ The provided website is not available.', red));
     }
   }
 }

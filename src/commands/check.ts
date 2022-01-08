@@ -1,5 +1,5 @@
 import { Command } from '@oclif/command';
-import chalk from 'chalk';
+import iro, { green, red } from 'node-iro';
 
 import servers from '../lib/servers';
 import { Server } from '../types/servers';
@@ -7,18 +7,17 @@ import { Server } from '../types/servers';
 import { check } from '../lib/check';
 
 export default class Check extends Command {
-  static description = 'Check if a certain uCoz/Narod/uWeb server is available.';
+  static description =
+    'Check if a certain uCoz/Narod/uWeb server is available.';
 
   static examples = [
     `$ userv check s32
 The server s32 (195.216.243.232) from the uCoz family is currently AVAILABLE.`,
     `$ userv check 195.216.243.232
-The server s32 (195.216.243.232) from the uCoz family is currently AVAILABLE.`
+The server s32 (195.216.243.232) from the uCoz family is currently AVAILABLE.`,
   ];
 
-  static args = [
-    { name: 'server', required: true }
-  ];
+  static args = [{ name: 'server', required: true }];
 
   getInputType(input: string): string | boolean {
     if (input[0].toLowerCase() === 's' && parseInt(input.slice(1))) {
@@ -43,7 +42,9 @@ The server s32 (195.216.243.232) from the uCoz family is currently AVAILABLE.`
   async getNameByIp(ip: string): Promise<string | null> {
     const allServers: Server[] = await servers.get();
 
-    const targetServer: Server | undefined = allServers.find(server => server.ip === ip);
+    const targetServer: Server | undefined = allServers.find(
+      (server) => server.ip === ip,
+    );
 
     if (!targetServer) {
       return null;
@@ -67,7 +68,9 @@ The server s32 (195.216.243.232) from the uCoz family is currently AVAILABLE.`
       const name = await this.getNameByIp(args.server);
 
       if (!name) {
-        return this.error('The specified IP address could not be found in the database.');
+        return this.error(
+          'The specified IP address could not be found in the database.',
+        );
       }
 
       checkName = name;
@@ -80,8 +83,8 @@ The server s32 (195.216.243.232) from the uCoz family is currently AVAILABLE.`
     }
 
     const output: string = status.up
-      ? chalk.greenBright(`✔️ ${status.message}`)
-      : chalk.redBright(`❌ ${status.message}`);
+      ? iro(`✔️ ${status.message}`, green)
+      : iro(`❌ ${status.message}`, red);
 
     return this.log(output);
   }
