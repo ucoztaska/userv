@@ -35,7 +35,7 @@ function getRowData(row: string): Server {
 
   const name = split[0];
   const ip = split.pop()!;
-  const serverNum = parseInt(name.slice(0), 10);
+  const serverNum = parseInt(name.slice(1), 10);
   const family: 'uCoz' | 'Narod' | 'uWeb' = getServerFamily(serverNum);
 
   return {

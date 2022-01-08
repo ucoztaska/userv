@@ -35,9 +35,11 @@ userv all
 ```
 
 **Utility:** to figure out what server a uCoz website is hosted on, use the following command:
+
 ```
 userv site forum.ucoz.com
 ```
+
 and replace "forum.ucoz.com" with the URL of your website.
 
 ## Note
@@ -56,12 +58,13 @@ cd userv
 ```
 
 Install the dependencies using Yarn:
+
 ```
 npm i -g yarn
 yarn
 ```
 
-After making your changes, you can check them by running `./bin/run <command> <args>`.
+After making your changes, you can check them by running `./bin/dev <command> <args>`.
 
 Tests aren't currently available but very likely will be in the future. If you want to help out with tests, you can do that as well!
 
