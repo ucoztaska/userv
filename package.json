@@ -34,6 +34,7 @@
   "files": [
     "/bin",
     "/lib",
+    "/typings",
     "/npm-shrinkwrap.json",
     "/oclif.manifest.json"
   ],
@@ -61,5 +62,5 @@
     "postpack": "rimraf oclif.manifest.json",
     "prepack": "npm run build && oclif manifest && oclif readme"
   },
-  "types": "lib/index.d.ts"
+  "types": "typings/index.d.ts"
 }
