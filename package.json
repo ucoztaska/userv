@@ -22,6 +22,7 @@
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^4.0.0",
     "globby": "^10",
+    "oclif": "^2.1.0",
     "prettier": "^2.5.1",
     "rimraf": "^2.6.3",
     "ts-node": "^10.4.0",
@@ -54,10 +55,11 @@
   },
   "repository": "ucoztaska/userv",
   "scripts": {
+    "build": "rimraf lib && tsc -b",
     "lint": "eslint src --ext .ts",
     "lint:fix": "eslint src --ext .ts --fix",
     "postpack": "rimraf oclif.manifest.json",
-    "prepack": "rimraf lib && tsc -b && oclif-dev manifest && oclif-dev readme"
+    "prepack": "npm run build && oclif manifest && oclif readme"
   },
   "types": "lib/index.d.ts"
 }
