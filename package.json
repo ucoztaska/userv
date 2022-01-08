@@ -8,15 +8,13 @@
   },
   "bugs": "https://github.com/ucoztaska/userv/issues",
   "dependencies": {
-    "@oclif/command": "^1",
-    "@oclif/config": "^1",
-    "@oclif/plugin-help": "^2",
+    "@oclif/core": "^1.1.1",
+    "@oclif/plugin-help": "^5.1.10",
     "axios": "^0.24.0",
     "node-iro": "^1.0.2",
     "tslib": "^1"
   },
   "devDependencies": {
-    "@oclif/dev-cli": "^1",
     "@types/node": "^10",
     "@typescript-eslint/eslint-plugin": "^5.9.0",
     "@typescript-eslint/parser": "^5.9.0",

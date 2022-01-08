@@ -1,4 +1,4 @@
-import { Command } from '@oclif/command';
+import { Command } from '@oclif/core';
 import iro, { green, red } from 'node-iro';
 
 import servers from '../lib/servers';
@@ -54,7 +54,7 @@ The server s32 (195.216.243.232) from the uCoz family is currently AVAILABLE.`,
   }
 
   async run() {
-    const { args } = this.parse(Check);
+    const { args } = await this.parse(Check);
 
     const type: string | boolean = this.getInputType(args.server);
 

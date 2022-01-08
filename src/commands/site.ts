@@ -1,4 +1,4 @@
-import { Command } from '@oclif/command';
+import { Command } from '@oclif/core';
 import iro, { green, red } from 'node-iro';
 
 import axios, { AxiosResponse } from 'axios';
@@ -47,7 +47,7 @@ export default class Site extends Command {
   }
 
   async run() {
-    const { args } = this.parse(Site);
+    const { args } = await this.parse(Site);
 
     const url = this.validateUrl(args.url);
 

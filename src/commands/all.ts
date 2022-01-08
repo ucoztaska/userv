@@ -1,4 +1,4 @@
-import { Command } from '@oclif/command';
+import { Command } from '@oclif/core';
 import iro, { green, red } from 'node-iro';
 
 import servers from '../lib/servers';
